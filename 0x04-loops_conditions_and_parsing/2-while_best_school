@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#A while loop which displays a string for a number of times on each newline
+
+i=1
+while  [ $i -le 10 ]
+do 
+	echo "Best School" 
+	i=$(( i+1 ))
+done
