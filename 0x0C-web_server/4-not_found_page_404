@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Script to install Nginx server
+apt-get -y update
+apt-get -y install nginx
+# Create a temporary HTML file with "Hello World!"
+echo "<html><body>Hello World!</body></html>" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/mawonde permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
+service nginx start

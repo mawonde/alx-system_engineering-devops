@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script to install Nginx server
+apt-get -y update
+apt-get -y install nginx
+# Create a temporary HTML file with "Hello World!"
+echo "<html><body>Hello World!</body></html>" > /var/www/html/index.html
+sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/mawonde permanent;/" /etc/nginx/sites-available/default
+service nginx start
