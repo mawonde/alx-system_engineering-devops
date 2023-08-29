@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Script to install Nginx server
+apt-get -y update
+apt-get -y install nginx
+# Create a temporary HTML file with "Hello World!"
+echo "<html><body>Hello World!</body></html>" > /var/www/html/index.html
+service nginx start
