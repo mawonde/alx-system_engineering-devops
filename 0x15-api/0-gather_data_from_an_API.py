@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Script that, uses REST API, for a given employee ID, 
+"""Script that, uses REST API, for a given employee ID,
 returns information about  TODO list
 """
 import requests
@@ -18,18 +18,18 @@ def get_employee_todo_progress(employee_id):
 
         completed_tasks = [task for task in todos if task["completed"]]
 
-        total_tasks = len(todos)
+        all_tasks = len(todos)
 
-        num_completed_tasks = len(completed_tasks)
+        tasks_done = len(completed_tasks)
 
         # Make another request to get the employee's name
         user_response = requests.get(f"{base_url}/users/{employee_id}")
         user_data = user_response.json()
-        employee_name = user_data.get("name", "Unknown")
+        name = user_data.get("name", "Unknown")
 
         # Print the progress information
         print(
-            f"Employee {employee_name} is done with tasks ({num_completed_tasks}/{total_tasks}):"
+            f"Employee {name} is done with tasks ({tasks_done}/{all_tasks}):"
         )
         for task in completed_tasks:
             print(f"\t{task['title']}")
